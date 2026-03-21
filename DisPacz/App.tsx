@@ -1,32 +1,14 @@
+import 'react-native-gesture-handler';
+import { enableScreens } from 'react-native-screens';
+enableScreens();
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import AppNavigator from './src/navigation/AppNavigator';
 
-function App(): React.JSX.Element {
+export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Hello React Native!</Text>
-      <Text style={styles.subtitle}>with TypeScript 🚀</Text>
-    </View>
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#333',
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    marginTop: 8,
-  },
-});
-
-export default App;
