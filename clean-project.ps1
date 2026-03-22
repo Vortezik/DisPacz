@@ -4,7 +4,7 @@
 Write-Host "🧹 Czyszczenie projektu..." -ForegroundColor Cyan
 
 # React Native
-$rnPath = "rn\SolutionOrdersMobile"
+$rnPath = "C:\git\DisPacz\DisPacz"
 
 Write-Host "Usuwanie node_modules..." -ForegroundColor Yellow
 cmd /c "rd /s /q $rnPath\node_modules" 2>$null
@@ -23,7 +23,7 @@ Write-Host "Usuwanie Metro cache..." -ForegroundColor Yellow
 Remove-Item -Path "$rnPath\.metro" -Recurse -Force -ErrorAction SilentlyContinue
 
 # .NET
-$dotnetPath = "dotnet\SolutionOrdersReact.Server"
+$dotnetPath = "dotnet\DisPacz.Server"
 
 Write-Host "Usuwanie .NET bin/obj..." -ForegroundColor Yellow
 Remove-Item -Path "$dotnetPath\bin" -Recurse -Force -ErrorAction SilentlyContinue
