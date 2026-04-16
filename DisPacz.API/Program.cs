@@ -1,4 +1,8 @@
 
+using Mapster;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
+
 namespace DisPacz.API
 {
     public class Program
@@ -12,6 +16,12 @@ namespace DisPacz.API
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
+            builder.Services.AddDbContext<Models.Data.ApplicationDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDbContext")));
+
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
+            TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetExecutingAssembly());
 
             var app = builder.Build();
 
@@ -19,6 +29,10 @@ namespace DisPacz.API
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
+                app.UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/openapi/v1.json", "v1");
+                });
             }
 
             app.UseHttpsRedirection();
