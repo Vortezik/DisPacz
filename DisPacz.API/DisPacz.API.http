@@ -1,0 +1,6 @@
+@DisPacz.API_HostAddress = http://localhost:5215
+
+GET {{DisPacz.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
