@@ -41,7 +41,7 @@ namespace DisPacz.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients");
+                    b.ToTable("Clients", (string)null);
                 });
 
             modelBuilder.Entity("DisPacz.API.Models.Dispatch", b =>
@@ -67,7 +67,7 @@ namespace DisPacz.API.Migrations
 
                     b.HasIndex("WorkerId");
 
-                    b.ToTable("Dispatches");
+                    b.ToTable("Dispatches", (string)null);
                 });
 
             modelBuilder.Entity("DisPacz.API.Models.Equipment", b =>
@@ -86,7 +86,7 @@ namespace DisPacz.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Equipments");
+                    b.ToTable("Equipments", (string)null);
                 });
 
             modelBuilder.Entity("DisPacz.API.Models.Job", b =>
@@ -121,7 +121,7 @@ namespace DisPacz.API.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("Jobs");
+                    b.ToTable("Jobs", (string)null);
                 });
 
             modelBuilder.Entity("DisPacz.API.Models.JobEquipment", b =>
@@ -136,7 +136,7 @@ namespace DisPacz.API.Migrations
 
                     b.HasIndex("EquipmentId");
 
-                    b.ToTable("JobEquipments");
+                    b.ToTable("JobEquipments", (string)null);
                 });
 
             modelBuilder.Entity("DisPacz.API.Models.JobWorker", b =>
@@ -151,7 +151,7 @@ namespace DisPacz.API.Migrations
 
                     b.HasIndex("WorkerId");
 
-                    b.ToTable("JobWorkers");
+                    b.ToTable("JobWorkers", (string)null);
                 });
 
             modelBuilder.Entity("DisPacz.API.Models.Location", b =>
@@ -170,7 +170,7 @@ namespace DisPacz.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Locations");
+                    b.ToTable("Locations", (string)null);
                 });
 
             modelBuilder.Entity("DisPacz.API.Models.Worker", b =>
@@ -189,7 +189,7 @@ namespace DisPacz.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Workers");
+                    b.ToTable("Workers", (string)null);
                 });
 
             modelBuilder.Entity("DisPacz.API.Models.Dispatch", b =>
