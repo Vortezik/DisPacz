@@ -1,15 +1,17 @@
-﻿namespace DisPacz.API.Features.Jobs.Messages.DTOs
+﻿using MediatR;
+using System.Text.Json.Serialization;
+
+namespace DisPacz.API.Features.Jobs.Messages.Commands
 {
-    public class JobDto
+    public class UpdateJobCommand : IRequest
     {
+        [JsonIgnore]
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public DateTime ScheduledDate { get; set; }
         public string Status { get; set; }
+        public DateTime ScheduledDate { get; set; }
         public int ClientId { get; set; }
-        public string ClientName { get; set; }
         public int LocationId { get; set; }
-        public string LocationAddress { get; set; }
     }
 }

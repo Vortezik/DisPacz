@@ -1,28 +1,30 @@
 ﻿using DisPacz.API.Features.Locations.Messages.Commands;
+using DisPacz.API.Features.Locations.Services;
 using DisPacz.API.Models;
 using DisPacz.API.Models.Data;
+using Mapster;
 using MediatR;
 
 namespace DisPacz.API.Features.Locations.Handlers.Commands
 {
     public class CreateLocationHandler : IRequestHandler<CreateLocationCommand, int>
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ILocationService _locationService;
+        private readonly ILogger<CreateLocationHandler> _logger;
 
-        public CreateLocationHandler(ApplicationDbContext context)
+        public CreateLocationHandler(ILocationService locationService, ILogger<CreateLocationHandler> logger)
         {
-            _context = context;
+            _locationService = locationService;
+            _logger = logger;
         }
 
         public async Task<int> Handle(CreateLocationCommand request, CancellationToken cancellationToken)
         {
-            var location = new Location
-            {
-                Address = request.Address,
-                City = request.City
-            };
-            _context.Locations.Add(location);
-            await _context.SaveChangesAsync(cancellationToken);
+            _logger.LogInformation("Creating a location with address: {Address} and city: {City}", request.Address, request.City);
+            var location = request.Adapt<Location>();
+            await _locationService.CreateLocation(location, cancellationToken);
+            _logger.LogInformation("Location created with ID: {Id}", location.Id);
+
             return location.Id;
         }
     }

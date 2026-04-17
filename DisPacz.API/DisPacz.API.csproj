@@ -26,15 +26,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.1.7" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Clients\Services\" />
-    <Folder Include="Features\Clients\Providers\" />
-    <Folder Include="Features\Jobs\Services\" />
-    <Folder Include="Features\Jobs\Providers\" />
-    <Folder Include="Features\Locations\Services\" />
-    <Folder Include="Features\Locations\Providers\" />
-    <Folder Include="Features\Workers\Services\" />
-    <Folder Include="Features\Workers\Providers\" />
-  </ItemGroup>
-
 </Project>

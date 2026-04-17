@@ -1,7 +1,14 @@
-
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using DisPacz.API.Features.Workers.Providers;
+using DisPacz.API.Features.Workers.Services;
+using DisPacz.API.Features.Jobs.Services;
+using DisPacz.API.Features.Jobs.Providers;
+using DisPacz.API.Features.Clients.Services;
+using DisPacz.API.Features.Clients.Providers;
+using DisPacz.API.Features.Locations.Services;
+using DisPacz.API.Features.Locations.Providers;
 
 namespace DisPacz.API
 {
@@ -22,6 +29,15 @@ namespace DisPacz.API
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
             TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetExecutingAssembly());
+
+            builder.Services.AddScoped<IWorkerProvider, WorkerProvider>();
+            builder.Services.AddScoped<IWorkerService, WorkerService>();
+            builder.Services.AddScoped<IJobProvider, JobProvider>();
+            builder.Services.AddScoped<IJobService, JobService>();
+            builder.Services.AddScoped<IClientProvider, ClientProvider>();
+            builder.Services.AddScoped<IClientService, ClientService>();
+            builder.Services.AddScoped<ILocationProvider, LocationProvider>();
+            builder.Services.AddScoped<ILocationService, LocationService>();
 
             var app = builder.Build();
 
