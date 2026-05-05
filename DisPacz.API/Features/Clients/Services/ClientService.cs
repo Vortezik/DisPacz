@@ -45,7 +45,6 @@ namespace DisPacz.API.Features.Clients.Services
             }
 
             _context.Clients.Remove(client);
-
             await _context.SaveChangesAsync(cancellationToken);
         }
     }

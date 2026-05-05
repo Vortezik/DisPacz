@@ -9,6 +9,10 @@ using DisPacz.API.Features.Clients.Services;
 using DisPacz.API.Features.Clients.Providers;
 using DisPacz.API.Features.Locations.Services;
 using DisPacz.API.Features.Locations.Providers;
+using DisPacz.API.Features.Dispatches.Providers;
+using DisPacz.API.Features.Dispatches.Services;
+using DisPacz.API.Features.Equipments.Services;
+using DisPacz.API.Features.Equipments.Providers;
 
 namespace DisPacz.API
 {
@@ -38,6 +42,10 @@ namespace DisPacz.API
             builder.Services.AddScoped<IClientService, ClientService>();
             builder.Services.AddScoped<ILocationProvider, LocationProvider>();
             builder.Services.AddScoped<ILocationService, LocationService>();
+            builder.Services.AddScoped<IDispatchProvider, DispatchProvider>();
+            builder.Services.AddScoped<IDispatchService, DispatchService>();
+            builder.Services.AddScoped<IEquipmentProvider, EquipmentProvider>();
+            builder.Services.AddScoped<IEquipmentService, EquipmentService>();
 
             var app = builder.Build();
 

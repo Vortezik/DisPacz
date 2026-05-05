@@ -1,10 +1,8 @@
 ﻿using DisPacz.API.Features.Clients.Messages.DTOs;
 using DisPacz.API.Features.Clients.Messages.Queries;
 using DisPacz.API.Features.Clients.Providers;
-using DisPacz.API.Models.Data;
 using Mapster;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace DisPacz.API.Features.Clients.Handlers.Queries
 {
