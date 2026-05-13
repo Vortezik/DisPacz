@@ -27,6 +27,20 @@ namespace DisPacz.API.Features.Jobs.Handlers.Commands
                     WorkerId = request.WorkerId
                 });
 
+                _context.Dispatches.Add(new Dispatch
+                {
+                    AssignedAt = DateTime.UtcNow,
+                    JobId = request.JobId,
+                    WorkerId = request.WorkerId
+                });
+
+                var job = await _context.Jobs.FirstOrDefaultAsync(j => j.Id == request.JobId, cancellationToken);
+
+                if (job != null && job.Status != "Completed")
+                {
+                    job.Status = "In Progress";
+                }
+
                 await _context.SaveChangesAsync(cancellationToken);
             }
         }

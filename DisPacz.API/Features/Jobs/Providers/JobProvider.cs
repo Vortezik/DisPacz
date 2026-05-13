@@ -33,6 +33,8 @@ namespace DisPacz.API.Features.Jobs.Providers
             var query = _context.Jobs
                 .Include(j => j.Client)
                 .Include(j => j.Location)
+                .Include(j => j.JobEquipments)
+                .ThenInclude(je => je.Equipment)
                 .AsQueryable();
 
             if (asNoTracking)

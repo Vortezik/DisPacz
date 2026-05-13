@@ -22,6 +22,11 @@ namespace DisPacz.API.Features.Jobs.Handlers.Commands
         {
             _logger.LogInformation("Creating job with title: {Title}", request.Title);
             var job = request.Adapt<Job>();
+            if (string.IsNullOrWhiteSpace(job.Status))
+            {
+                job.Status = "Open";
+            }
+
             await _jobService.CreateJob(job, cancellationToken);
             _logger.LogInformation("Job created with ID: {Id}", job.Id);
             return job.Id;

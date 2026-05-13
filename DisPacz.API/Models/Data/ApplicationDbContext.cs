@@ -64,7 +64,7 @@ namespace DisPacz.API.Models.Data
 
             modelBuilder.Entity<JobEquipment>()
                 .HasOne(je => je.Job)
-                .WithMany()
+                .WithMany(j => j.JobEquipments)
                 .HasForeignKey(je => je.JobId);
 
             modelBuilder.Entity<JobEquipment>()

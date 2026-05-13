@@ -11,5 +11,7 @@
         public Client Client { get; set; }
         public int LocationId { get; set; }
         public Location Location { get; set; }
+
+        public ICollection<JobEquipment> JobEquipments { get; set; } = new List<JobEquipment>();
     }
 }

@@ -1,55 +1,93 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { colors, radius, spacing, typography } from '../theme/theme';
+import { StatusChip } from './StatusChip';
+import type { JobDto } from '../types/models';
 
-const JobCard = ({ job, onPress }: any) => {
-  const getStatusColor = () => {
-    switch (job.status) {
-      case 'Open': return '#FF6B6B';
-      case 'In Progress': return '#FFA500';
-      case 'Completed': return '#4CAF50';
-      default: return '#ccc';
-    }
-  };
+type Props = {
+  job: JobDto;
+  onPress?: () => void;
+};
 
-  return (
-    <TouchableOpacity style={styles.card} onPress={onPress}>
+const formatWhen = (iso: string) => {
+  try {
+    const d = new Date(iso);
+    return d.toLocaleString(undefined, {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  } catch {
+    return iso;
+  }
+};
+
+const JobCard: React.FC<Props> = ({ job, onPress }) => {
+  const body = (
+    <>
       <View style={styles.header}>
-        <Text style={styles.title}>{job.title}</Text>
-        <Text style={[styles.status, { backgroundColor: getStatusColor() }]}>
-          {job.status}
+        <Text style={styles.title} numberOfLines={2}>
+          {job.title}
         </Text>
+        <StatusChip status={job.status} />
       </View>
-
-      <Text style={styles.text}>Client: {job.client}</Text>
-      <Text style={styles.text}>Technician: {job.technician}</Text>
-    </TouchableOpacity>
+      <Text style={styles.meta}>{formatWhen(job.scheduledDate)}</Text>
+      <Text style={styles.line} numberOfLines={1}>
+        {job.clientName}
+      </Text>
+      <Text style={styles.lineMuted} numberOfLines={2}>
+        {job.locationAddress}
+      </Text>
+    </>
   );
+
+  if (onPress) {
+    return (
+      <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.8}>
+        {body}
+      </TouchableOpacity>
+    );
+  }
+
+  return <View style={styles.card}>{body}</View>;
 };
 
 const styles = StyleSheet.create({
   card: {
-    padding: 16,
-    marginVertical: 8,
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    elevation: 3,
+    backgroundColor: colors.surfaceElevated,
+    borderRadius: radius.lg,
+    borderWidth: 1,
+    borderColor: colors.border,
+    padding: spacing.md,
+    marginBottom: spacing.md,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 8,
+    alignItems: 'flex-start',
+    gap: spacing.sm,
+    marginBottom: spacing.sm,
   },
   title: {
-    fontWeight: 'bold',
-    fontSize: 16,
+    flex: 1,
+    ...typography.subtitle,
+    color: colors.textPrimary,
   },
-  status: {
-    color: '#fff',
-    paddingHorizontal: 8,
-    borderRadius: 5,
+  meta: {
+    ...typography.caption,
+    color: colors.accent,
+    marginBottom: spacing.sm,
   },
-  text: {
-    color: '#555',
+  line: {
+    ...typography.body,
+    color: colors.textPrimary,
+    marginBottom: 2,
+  },
+  lineMuted: {
+    ...typography.caption,
+    color: colors.textSecondary,
   },
 });
 
