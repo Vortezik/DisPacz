@@ -16,11 +16,33 @@ namespace DisPacz.API.Features.Jobs.Handlers.Commands
 
         public async Task Handle(RemoveWorkerFromJobCommand request, CancellationToken cancellationToken)
         {
-            var workerjob = await _context.JobWorkers.FirstOrDefaultAsync(jw => jw.JobId == request.JobId && jw.WorkerId == request.WorkerId, cancellationToken);
+            var assignments = await _context.JobWorkers
+                .Where(jw => jw.JobId == request.JobId)
+                .ToListAsync(cancellationToken);
+
+            var workerjob = assignments.FirstOrDefault(jw => jw.WorkerId == request.WorkerId);
 
             if (workerjob != null)
             {
                 _context.JobWorkers.Remove(workerjob);
+
+                var dispatches = await _context.Dispatches
+                    .Where(d => d.JobId == request.JobId && d.WorkerId == request.WorkerId)
+                    .ToListAsync(cancellationToken);
+                _context.Dispatches.RemoveRange(dispatches);
+
+                var remaining = assignments.Count - 1;
+
+                if (remaining <= 0)
+                {
+                    var job = await _context.Jobs.FirstOrDefaultAsync(j => j.Id == request.JobId, cancellationToken);
+
+                    if (job != null && job.Status != "Completed")
+                    {
+                        job.Status = "Open";
+                    }
+                }
+
                 await _context.SaveChangesAsync(cancellationToken);
             }
         }

@@ -1,5 +1,12 @@
 ﻿namespace DisPacz.API.Features.Jobs.Messages.DTOs
 {
+    public class EquipmentOnJobDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string SerialNumber { get; set; }
+    }
+
     public class JobDto
     {
         public int Id { get; set; }
@@ -11,5 +18,6 @@
         public string ClientName { get; set; }
         public int LocationId { get; set; }
         public string LocationAddress { get; set; }
+        public List<EquipmentOnJobDto> AssignedEquipment { get; set; } = new();
     }
 }
