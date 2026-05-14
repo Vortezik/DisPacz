@@ -1,5 +1,3 @@
-/** Shapes match ASP.NET Core JSON camelCase serialization of your API DTOs. */
-
 export interface EquipmentOnJobDto {
   id: number;
   name: string;

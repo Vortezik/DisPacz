@@ -1,21 +1,10 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import {
-  RefreshControl,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors, radius, spacing, typography } from '../../theme/theme';
-import {
-  fetchDispatches,
-  fetchJobs,
-  fetchWorkers,
-} from '../../api/disPaczApi';
+import { fetchDispatches, fetchJobs, fetchWorkers, } from '../../api/disPaczApi';
 import { ApiError } from '../../api/httpClient';
 import { LoadingBlock, ErrorBlock } from '../../components/ListRowCard';
 import type { HomeStackParamList, MainTabParamList } from '../../navigation/types';

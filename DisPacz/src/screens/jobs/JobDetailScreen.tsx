@@ -1,23 +1,10 @@
 import React, { useCallback, useState } from 'react';
-import {
-  Alert,
-  Modal,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Alert, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { RouteProp } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {
-  assignWorkerToJob,
-  fetchJob,
-  fetchWorkers,
-} from '../../api/disPaczApi';
+import { assignWorkerToJob, fetchJob, fetchWorkers, } from '../../api/disPaczApi';
 import { ApiError } from '../../api/httpClient';
 import { ErrorBlock, ListRowCard, LoadingBlock } from '../../components/ListRowCard';
 import { StatusChip } from '../../components/StatusChip';
