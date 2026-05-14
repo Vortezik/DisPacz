@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  ActivityIndicator,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 import { colors, radius, spacing, typography } from '../theme/theme';
 
 type Props = {

@@ -1,12 +1,5 @@
 import { apiGet, apiPostNoContent, apiPutNoContent } from './httpClient';
-import type {
-  ClientDto,
-  DispatchDto,
-  EquipmentDto,
-  JobDto,
-  LocationDto,
-  WorkerDto,
-} from '../types/models';
+import type { ClientDto, DispatchDto, EquipmentDto, JobDto, LocationDto, WorkerDto, } from '../types/models';
 
 const json = (path: string) => apiGet<unknown>(path);
 
